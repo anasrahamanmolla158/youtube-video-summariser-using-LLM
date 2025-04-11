@@ -14,7 +14,9 @@ genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 # Prompt template for generating a summary
 
 prompt = """You are a YouTube video summarizer. You will take the transcript text 
-and summarize the entire video, providing the key points in details . 
+and summarize the entire video, providing the key points in details
+also format the final out with emoji and icon for each heading and imprtant text also
+and write heading with h1 and subheading with h3 and also bold importent words in the body points . 
 Here is the transcript text: """
 
 # Function to extract the YouTube video ID from various types of URLs
@@ -55,7 +57,7 @@ def check_video_platform(url):
     else:
         return "unsupported"
 
-st.title("Get Youtube summary")
+st.title("📽 Get Youtube summary")
 video_link = st.text_input("Enter Video Link:")
 
 if video_link:
@@ -74,7 +76,7 @@ if video_link:
     else:
         st.error("Unsupported video platform. Please provide a valid YouTube link .")
 
-if st.button("Get Detailed Notes"):
+if st.button(" ✨ Get Detailed Notes "):
     if platform == "youtube":
         if video_id:
             with st.spinner('Retrieving transcript and generating summary...'):
@@ -87,7 +89,7 @@ if st.button("Get Detailed Notes"):
                     if "Error" in summary:
                         st.error(summary)
                     else:
-                        st.markdown("## Detailed Notes:")
+                        st.markdown("## 📝 Detailed Notes:")
                         st.write(summary)
         else:
             st.error("Please enter a valid YouTube video link.")
